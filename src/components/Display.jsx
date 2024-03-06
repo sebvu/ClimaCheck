@@ -39,9 +39,8 @@
     }
 
     return (
-
         <>
-            <div className='bg-gray-600 flex h-fit w-[45vw] min-w-[400px] max-w-[650px] flex-col items-center sm:h-screen'>
+            <div className='bg-gray-600 flex h-fit w-[50vw] min-w-[400px] max-w-[650px] flex-col items-center sm:h-screen'>
                 <div className='bg-transparent flex justify-center items-center w-full mt-10'>
                     <div className='bg-[#EFEFEF] my-4 px-6 py-3 flex rounded-full w-3/4 h-2/3 items-center'>
                         <input 
@@ -57,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div className='bg-red-500 flex justify-center items-center w-5/6 h-3/5 mt-20'>
+                <div className='bg-[#D9F3FF] flex w-5/6 h-3/5 mt-20 flex-col rounded-3xl'>
                     <WeatherDisplay
                         city={city}
                         state={state}
