@@ -14,7 +14,7 @@ const [state, setState] = useState('Texas')
 const googleGeocodingAPIKey = `AIzaSyA4q-MYZhbhKZ1BoaLwTHp6H5tC4xaUYfA`
 const googleGeocodingAPIUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(`${city}, ${state}`)}&key=${googleGeocodingAPIKey}`
 const openWeatherAPIKey = `79d7e27a48b495cc69eab119dc014347`
-const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}`
+const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}&units=imperial`
 
 const fetchLatLng = () => { //only runs when called
 
@@ -31,6 +31,7 @@ useEffect(() => { //only runs when lat and lng is changed, or component is creat
     axios.get(openWeatherAPIUrl)
     .then((response) => {
       setWeather(response.data)
+      console.log(weather) //reference for passing through cards
     })
     .catch((error) => {console.log(error)})
   }
@@ -48,7 +49,9 @@ useEffect(() => { //only runs when lat and lng is changed, or component is creat
         setCity={setCity}
         fetchLatLng={fetchLatLng}
       /> 
-      <Details/>
+      <Details
+        weather={weather}
+      />
       </div>
     </>
   )

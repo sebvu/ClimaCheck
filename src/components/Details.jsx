@@ -1,59 +1,34 @@
 import React from 'react'
 import Card from './Card'
 
-const Details = () => {
+const Details = ({weather}) => {
 
   return (
     <div className='bg-[#D9F3FF] flex w-full items-center justify-center px-6 py-4'>
       <div className='grid w-fit grid-cols-1 gap-20 sm:grid-cols-2 xl:grid-cols-3'>
-        {/* <Card 
-          title={feelsLikeTitle}
-          value={feelsLike}
+        <Card 
+          title={"Feels Like"}
+          value={weather.daily[0].feels_like.day + "°F"}
         />
         <Card 
-          title={tempMaxTitle}
-          value={tempMax}
-        />
-
-        <Card 
-          title={tempMinTitle}
-          value={tempMin}
+          title={"Max Temperature"}
+          value={weather.daily[0].temp.max + "°F"}
         />
         <Card 
-          title={pressureTitle}
-          value={pressure}
+          title={"Min Temperature"}
+          value={weather.daily[0].temp.min + "°F"}
         />
         <Card 
-          title={humidityTitle}
-          value={humidity}
+          title={"Pressure Index"}
+          value={weather.daily[0].pressure + "in"}
         />
         <Card 
-          title={windSpeedTitle}
-          value={windSpeed}
-        /> */}
-        <Card
-          title=''
-          value=''
+          title={"Humidity Level"}
+          value={weather.daily[0].humidity + "%"}
         />
-        <Card
-          title=''
-          value=''
-        />
-        <Card
-          title=''
-          value=''
-        />
-        <Card
-          title=''
-          value=''
-        />
-        <Card
-          title=''
-          value=''
-        />
-        <Card
-          title=''
-          value=''
+        <Card 
+          title={"Wind Speed"}
+          value={weather.daily[0].wind_speed + "mph"}
         />
       </div>
     </div>
