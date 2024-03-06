@@ -1,7 +1,8 @@
     import { useRef, useState } from 'react';
     import { FaMagnifyingGlass } from "react-icons/fa6";
+    import WeatherDisplay from './WeatherDisplay';
 
-    const Display = ({state, setState, city, setCity, fetchLatLng}) => {
+    const Display = ({state, setState, city, setCity, fetchLatLng, weather}) => {
     const inputRef = useRef()
     const [input, setInput] = useState('')
 
@@ -55,6 +56,13 @@
                             <FaMagnifyingGlass size = {25} color = '#748CF1'/>
                         </div>
                     </div>
+                </div>
+                <div className='bg-red-500 flex justify-center items-center w-5/6 h-3/5 mt-20'>
+                    <WeatherDisplay
+                        city={city}
+                        state={state}
+                        weather={weather}
+                    />
                 </div>
             </div>
             

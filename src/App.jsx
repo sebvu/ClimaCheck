@@ -16,42 +16,45 @@ const googleGeocodingAPIUrl = `https://maps.googleapis.com/maps/api/geocode/json
 const openWeatherAPIKey = `79d7e27a48b495cc69eab119dc014347`
 const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}&units=imperial`
 
-const fetchLatLng = () => { //only runs when called
+const fetchLatLng = () => { // only runs when called
 
   axios.get(googleGeocodingAPIUrl)
   .then((response) => {
     setLat(response.data.results[0].geometry.location.lat)
     setLng(response.data.results[0].geometry.location.lng)
   })
-  .catch((error) => {console.log(error)})
+  .catch((error) => {console.error("Error with googleGeocodingAPI:",error)})
 }
 
-useEffect(() => { //only runs when lat and lng is changed, or component is created
+useEffect(() => { // only runs when lat and lng is changed, or component is created
   const fetchWeatherData = () => {
     axios.get(openWeatherAPIUrl)
     .then((response) => {
       setWeather(response.data)
-      console.log(weather) //reference for passing through cards
     })
-    .catch((error) => {console.log(error)})
+    .catch((error) => {console.error("Error with fetchWeatherData:", error)})
   }
-  console.log(lat)
   fetchWeatherData()
 },[lat, lng])
+
+useEffect(() => {
+  console.log("Weather state updated:", weather); // monitoring weather changes
+}, [weather]);
 
   return (
     <>
       <div className='flex'>
-      <Display 
-        state={state}
-        setState={setState}
-        city={city}
-        setCity={setCity}
-        fetchLatLng={fetchLatLng}
-      /> 
-      <Details
-        weather={weather}
-      />
+        {weather && ( // Render Display only when weather is not undefined
+          <Display 
+            state={state}
+            setState={setState}
+            city={city}
+            setCity={setCity}
+            fetchLatLng={fetchLatLng}
+            weather={weather}
+          />
+        )}
+        {weather && <Details weather={weather} />}
       </div>
     </>
   )
