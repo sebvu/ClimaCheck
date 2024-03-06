@@ -7,12 +7,12 @@
     return (
         <>
             <div className='bg-gray-600 flex h-fit w-[45vw] min-w-[400px] max-w-[650px] flex-col items-center sm:h-screen'>
-                <div className='bg-transparent flex justify-center items-center w-full'>
-                    <div className='bg-[#EFEFEF] my-4 px-6 py-1 flex rounded-full w-3/4'>
+                <div className='bg-transparent flex justify-center items-center w-full mt-10'>
+                    <div className='bg-[#EFEFEF] my-4 px-6 py-3 flex rounded-full w-3/4 h-2/3 items-center'>
                         <input 
                             type="text"
                             placeholder="City, State"
-                            className='w-full bg-[#EFEFEF]'
+                            className='w-full bg-[#EFEFEF] outline-none'
                             ref={inputRef}
                         />
                         <div onClick={() => inputRef.current.focus()}>
