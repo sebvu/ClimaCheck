@@ -1,7 +1,7 @@
     import { useRef } from 'react';
     import { FaMagnifyingGlass } from "react-icons/fa6";
 
-    const Display = () => {
+    const Display = ({state, setState, city, setCity, fetchLatLng}) => {
     const inputRef = useRef()
 
     return (
