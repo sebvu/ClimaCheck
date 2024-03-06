@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import Display from './components/Display.jsx'//every component made is imported in App.jsx
+import Details from './components/Details.jsx'
 
 function App() {
 
   return (
     <>
-      <Display/>
+      <div className='flex'>
+          <Display/>
+          <Details/>
+      </div>
     </>
   )
 }
