@@ -17,12 +17,6 @@ const openWeatherAPIKey = `79d7e27a48b495cc69eab119dc014347`
 const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}`
 
 const fetchLatLng = () => { //only runs when called
-// Input Validation - Confirm that both strings are not empty
-if (city.length === 0 || state.length === 0) {
-    alert ("Please enter a valid city and state")
-    setCityAndState("")
-    return
-}
 
   axios.get(googleGeocodingAPIUrl)
   .then((response) => {
