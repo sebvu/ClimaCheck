@@ -7,33 +7,23 @@
     const [input, setInput] = useState('')
 
     const handleEnter = (event) => {
-        if (event.key === "Enter") {
-
-            if(input.length === 0) {
-                alert("Please enter a valid city and state.")
-                return
-            }
-            const parts = input.split(',')
-
-            if(parts.length !== 2) {
-                alert("Please enter a valid city and state.")
-                setInput("")
-                return
-            }
-
-            // Input Validation - Confirm that both strings are not empty
-            if (parts[0].trim() === 0 || parts[1].trim() === 0) {
-                alert("Please enter a valid city and state.")
-                setInput("")
-                return
-            }
-
-            setCity(parts[0].trim())
-            setState(parts[1].trim())
-
-            fetchLatLng()
+        if (event.key !== "Enter") return;
+      
+        const parts = input.split(',');
+      
+        // Update state immediately if all conditions pass
+        if (parts.length === 2 && parts[0].trim() && parts[1].trim()) {
+          setCity(parts[0].trim());
+          setState(parts[1].trim());
+          fetchLatLng();
+          setInput("");
+          return;
         }
-    }
+      
+        alert("Please enter a valid city and state.");
+        setInput("");
+      }
+
     const handleChange = (event) => { //sets input everytime there is a keystroke
         setInput(event.target.value)
     }
