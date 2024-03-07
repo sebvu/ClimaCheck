@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import Lottie from 'lottie-react'
 // import animationData01d from '../assets/01d.json'
 // import animationData01n from '../assets/01n.json'
@@ -70,6 +71,10 @@ for (const key in animationDataPaths) {
   });
 }
 
+=======
+import { PiDogDuotone } from "react-icons/pi";
+
+>>>>>>> b815f999878cf383cacc3ff92a10537a6639e500
 const formatDate = (date) => {
   const options = {
       weekday: 'long',
@@ -87,7 +92,11 @@ const WeatherDisplay = ({city, state, weather}) => {
   return (
     <>
       <div className='bg-transparent h-3/6 w-full flex justify-center items-center'>
+<<<<<<< HEAD
         <Lottie animationData={animationData[weather.current.weather[0].icon]}/> {/* will call animationData object with .icon API call */}
+=======
+        <PiDogDuotone size = '250'/> {/* placeholder */}
+>>>>>>> b815f999878cf383cacc3ff92a10537a6639e500
       </div>
       <div className='bg-transparent h-1/6 w-full flex justify-center items-center flex-col'>
         <div className='m-2 text-3xl font-semibold'>
@@ -98,8 +107,13 @@ const WeatherDisplay = ({city, state, weather}) => {
         </div>
       </div>
       <div className='bg-transparent h-2/6 w-full flex justify-center items-center flex-col'>
+<<<<<<< HEAD
         <div className='border-gray-600 w-full border-t-4 mb-8'>
           <hr></hr>
+=======
+        <div>
+
+>>>>>>> b815f999878cf383cacc3ff92a10537a6639e500
         </div>
         <div className='m-3 text-xl'>
           <p>{formatDate((weather.current.dt)*1000)}</p>
