@@ -17,12 +17,30 @@ const openWeatherAPIKey = `79d7e27a48b495cc69eab119dc014347`
 const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}&units=imperial`
 
 useEffect(() => {
-  axios.get(googleGeocodingAPIUrl)
-  .then((response) => {
-    setLat(response.data.results[0].geometry.location.lat)
-    setLng(response.data.result[0].geometry.location.lng)
-  }) 
-  .catch((error) => {console.error("Error with googleGeocodingAPI:", error)})
+    axios.get(googleGeocodingAPIUrl)
+    .then((response) => {
+      console.log(response) // provides the data tree response gives
+      
+      const {lat, lng} = response?.data?.results[0]?.geometry?.location || {}
+
+      if (lat && lng) {
+      setLat(lat)
+      setLng(lng)
+      }
+    }) 
+    .catch((error) => {
+      console.error("Error retrieving location data:", error)
+      if (error.response) {
+        console.error("Network error:", error.response.status, error.response.data)
+        // Handle network errors (e.g., display user-friendly message)
+      } else if (error.request) {
+        console.error("Request error:", error.request) // Connection issues, etc.
+        // Handle request errors
+      } else {
+        console.error("Other error:", error.message)
+        // Handle other unexpected errors
+      }
+    })
 }, [city, state])
 
 useEffect(() => { // only runs when lat and lng is changed, or component is created
@@ -30,11 +48,23 @@ useEffect(() => { // only runs when lat and lng is changed, or component is crea
   .then((response) => {
     setWeather(response.data)
   })
-  .catch((error) => {console.error("Error with fetchWeatherData:", error)})
+  .catch((error) => {
+    console.error("Error retrieving location data:", error)
+      if (error.response) {
+        console.error("Network error:", error.response.status, error.response.data)
+        // Handle network errors (e.g., display user-friendly message)
+      } else if (error.request) {
+        console.error("Request error:", error.request) // Connection issues, etc.
+        // Handle request errors
+      } else {
+        console.error("Other error:", error.message)
+        // Handle other unexpected errors
+      }
+  })
 },[lat, lng])
 
 useEffect(() => {
-  console.log("Weather state updated for: ", city, state, weather); // monitoring weather changes
+  console.log("Weather state updated for: ", city, state, weather) // monitoring weather changes
 }, [weather])
 
   return (
