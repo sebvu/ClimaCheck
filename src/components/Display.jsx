@@ -6,26 +6,27 @@
     const inputRef = useRef()
     const [input, setInput] = useState('')
 
-    const handleEnter = (event) => {
-        if (event.key !== "Enter") return;
+    const handleEnter = (event) => { //validation check for user input
+        if (event.key !== "Enter") 
+            return;
       
         const parts = input.split(',');
       
         // Update state immediately if all conditions pass
         if (parts.length === 2 && parts[0].trim() && parts[1].trim()) {
-          setCity(parts[0].trim());
-          setState(parts[1].trim());
-          fetchLatLng();
-          setInput("");
+            setCity(parts[0].trim())
+            console.log(city) //city checker
+            setState(parts[1].trim())
+            console.log(state) //state checker
           return;
         }
       
-        alert("Please enter a valid city and state.");
-        setInput("");
+        alert("Please enter a valid city and state.")
+        setInput("")
       }
 
-    const handleChange = (event) => { //sets input everytime there is a keystroke
-        setInput(event.target.value)
+    const handleChange = (event) => {
+        setInput(event.target.value) //sets input everytime there is a keystroke
     }
 
     return (

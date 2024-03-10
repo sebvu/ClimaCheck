@@ -16,30 +16,26 @@ const googleGeocodingAPIUrl = `https://maps.googleapis.com/maps/api/geocode/json
 const openWeatherAPIKey = `79d7e27a48b495cc69eab119dc014347`
 const openWeatherAPIUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lng}&appid=${openWeatherAPIKey}&units=imperial`
 
-const fetchLatLng = () => { // only runs when called
-
+useEffect(() => {
   axios.get(googleGeocodingAPIUrl)
   .then((response) => {
     setLat(response.data.results[0].geometry.location.lat)
-    setLng(response.data.results[0].geometry.location.lng)
-  })
-  .catch((error) => {console.error("Error with googleGeocodingAPI:",error)})
-}
+    setLng(response.data.result[0].geometry.location.lng)
+  }) 
+  .catch((error) => {console.error("Error with googleGeocodingAPI:", error)})
+}, [city, state])
 
 useEffect(() => { // only runs when lat and lng is changed, or component is created
-  const fetchWeatherData = () => {
-    axios.get(openWeatherAPIUrl)
-    .then((response) => {
-      setWeather(response.data)
-    })
-    .catch((error) => {console.error("Error with fetchWeatherData:", error)})
-  }
-  fetchWeatherData()
+  axios.get(openWeatherAPIUrl)
+  .then((response) => {
+    setWeather(response.data)
+  })
+  .catch((error) => {console.error("Error with fetchWeatherData:", error)})
 },[lat, lng])
 
 useEffect(() => {
-  console.log("Weather state updated:", weather); // monitoring weather changes
-}, [weather]);
+  console.log("Weather state updated for: ", city, state, weather); // monitoring weather changes
+}, [weather])
 
   return (
     <>
@@ -50,7 +46,6 @@ useEffect(() => {
             setState={setState}
             city={city}
             setCity={setCity}
-            fetchLatLng={fetchLatLng}
             weather={weather}
           />
         )}
