@@ -64,7 +64,7 @@ useEffect(() => { // only runs when lat and lng is changed, or component is crea
 },[lat, lng])
 
 useEffect(() => {
-  console.log("Weather state updated for: ", city, state, weather) // monitoring weather changes
+  console.log("Weather state updated for:", city, state, weather, "at timezone", weather.timezone) // monitoring weather changes
 }, [weather])
 
   return (

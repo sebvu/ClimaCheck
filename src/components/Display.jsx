@@ -2,7 +2,7 @@
     import { FaMagnifyingGlass } from "react-icons/fa6";
     import WeatherDisplay from './WeatherDisplay';
 
-    const Display = ({state, setState, city, setCity, fetchLatLng, weather}) => {
+    const Display = ({state, setState, city, setCity, weather}) => {
     const inputRef = useRef()
     const [input, setInput] = useState('')
 
@@ -15,14 +15,12 @@
         // Update state immediately if all conditions pass
         if (parts.length === 2 && parts[0].trim() && parts[1].trim()) {
             setCity(parts[0].trim())
-            console.log(city) //city checker
+            console.log(city) // city check
             setState(parts[1].trim())
-            console.log(state) //state checker
-          return;
+            console.log(state) // state check
+            return;
         }
-      
         alert("Please enter a valid city and state.")
-        setInput("")
       }
 
     const handleChange = (event) => {
@@ -47,7 +45,7 @@
                         </div>
                     </div>
                 </div>
-                <div className='bg-[#D9F3FF] flex w-5/6 h-3/5 mt-20 flex-col rounded-3xl'>
+                <div className='bg-[#D9F3FF] flex w-5/6 h-3/5 mt-20 flex-col rounded-3xl text-center'>
                     <WeatherDisplay
                         city={city}
                         state={state}
@@ -55,7 +53,6 @@
                     />
                 </div>
             </div>
-            
         </>
     )
 }

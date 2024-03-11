@@ -31,7 +31,7 @@ for (const key in animationDataPaths) {
   });
 }
 
-const formatDate = (date) => {
+const formatDate = (date, timezone) => {
   const options = {
       weekday: 'long',
       year: 'numeric',
@@ -39,9 +39,10 @@ const formatDate = (date) => {
       day: 'numeric',
       hour: 'numeric',
       minute: 'numeric',
-      hour12: true
+      hour12: true,
+      timeZone: timezone
   }
-  return new Date(date).toLocaleString('en-US', options);
+  return new Intl.DateTimeFormat('en-US', options).format(new Date(date))
 }
 
 const WeatherDisplay = ({city, state, weather}) => {
@@ -54,7 +55,7 @@ const WeatherDisplay = ({city, state, weather}) => {
         <div className='m-2 text-3xl font-semibold'>
           <h1>{weather.current.temp + "°F"}</h1>
         </div>
-        <div className='m-2 text-xl'>
+        <div className='m-2 text-xl flex'>
           <p>{weather.daily[0].summary}</p>
         </div>
       </div>
@@ -63,7 +64,7 @@ const WeatherDisplay = ({city, state, weather}) => {
           <hr></hr>
         </div>
         <div className='m-3 text-xl'>
-          <p>{formatDate((weather.current.dt)*1000)}</p>
+          <p>{formatDate(weather.current.dt*1000, weather.timezone)}</p>
         </div>
         <div className='m-2 font-thin text-3xl'>
           <h2>{city}, {state}</h2>
